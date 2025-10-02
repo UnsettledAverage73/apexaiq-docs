@@ -13,24 +13,25 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
  Create as many sidebars as you want.
  */
 const sidebars: SidebarsConfig = {
-  // By default, Docusaurus generates a sidebar from the docs folder structure
-  tutorialSidebar: [],
-
   apexaIqSidebar: [
-    'apexa-iq/executive-summary',
-    'apexa-iq/introduction',
-    'apexa-iq/core-platform-philosophy',
-    'apexa-iq/technical-architecture',
-    'apexa-iq/data-flow-processing',
-    'apexa-iq/core-modules',
-    'apexa-iq/advanced-features',
-    'apexa-iq/implementation-deployment',
-    'apexa-iq/use-cases-solutions',
-    'apexa-iq/competitive-advantages',
-    'apexa-iq/getting-started-guide',
-    'apexa-iq/appendices',
-    'apexa-iq/terminology',
-    'apexa-iq/resources',
+    'executive-summary',
+    'introduction',
+    'core-platform-philosophy',
+    'technical-architecture',
+    'data-flow-processing',
+    'core-modules',
+    'advanced-features',
+    'implementation-deployment',
+    'use-cases-solutions',
+    'competitive-advantages',
+    'getting-started-guide',
+    'appendices',
+    'terminology',
+    'resources',
+  ],
+
+  pythonAssignmentSidebar: [
+    'intro',
   ],
 };
 

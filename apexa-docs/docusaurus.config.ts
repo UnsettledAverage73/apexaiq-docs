@@ -26,7 +26,6 @@ const config: Config = {
   projectName: 'docusaurus', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
 
   // Even if you don't use internationalization, you can use this field to set
   // useful metadata like html lang. For example, if your site is Chinese, you
@@ -40,14 +39,6 @@ const config: Config = {
     [
       'classic',
       {
-        docs: {
-          sidebarPath: './sidebars.ts',
-          routeBasePath: '/docs',
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
-          editUrl:
-            'https://github.com/unsettledaverage73/apexaiq-docs/tree/main/apexa-docs/',
-        },
         blog: {
           showReadingTime: true,
           feedOptions: {
@@ -70,6 +61,33 @@ const config: Config = {
     ],
   ],
 
+  plugins: [
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'apexa-iq',
+        path: 'docs/apexa-iq',
+        routeBasePath: '/docs',
+        editUrl:
+          'https://github.com/unsettledaverage73/apexaiq-docs/tree/main/apexa-docs/',
+        sidebarPath: './sidebars.ts',
+        sidebarId: 'apexaIqSidebar',
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      {
+        id: 'python-assignment',
+        path: 'docs/python-assignment',
+        routeBasePath: '/python-assignment',
+        sidebarPath: './sidebars.ts',
+        editUrl:
+          'https://github.com/unsettledaverage73/apexaiq-docs/tree/main/apexa-docs/',
+        sidebarId: 'pythonAssignmentSidebar',
+      },
+    ],
+  ],
+
   themeConfig: {
     // Replace with your project's social card
     image: 'img/image.png',
@@ -86,6 +104,12 @@ const config: Config = {
           sidebarId: 'apexaIqSidebar',
           position: 'left',
           label: 'Documentation',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'python-assignment',
+          position: 'left',
+          label: 'Python Assignment',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
@@ -148,6 +172,9 @@ const config: Config = {
 
   markdown: {
     mermaid: true,
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
   },
 };
 

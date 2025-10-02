@@ -15,7 +15,8 @@ title: Terminology
 - **Higher score → Better:** Indicates most assets are secure, compliant, and well-managed.
 - **Lower score → Needs improvement:** Indicates gaps in asset visibility, security, or compliance.
 - Helps IT and security teams **quickly assess risk** and **prioritize actions** to improve asset management.
-
+![Alt text](../../static/img/IT-Asset-Maintenance-Score-visual-selection.svg)
+<img src="../../static/img/IT-Asset-Maintenance-Score-visual-selection.svg" alt="IT Asset Maintenance Score" />
 ## End of Life, End of Support, End of Maintenance
 
 **1. End of Life** 
