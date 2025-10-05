@@ -5,9 +5,9 @@ import type * as Preset from '@docusaurus/preset-classic';
 // This runs in Node.js - Don't use client-side code here (browser APIs, JSX...)
 
 const config: Config = {
-  title: 'ApexaIQ Software Documentation',
-  tagline: 'Complete Platform Guide',
-  favicon: 'img/image.png',
+  title: 'My Site',
+  tagline: 'Dinosaurs are cool',
+  favicon: 'img/favicon.ico',
 
   // Future flags, see https://docusaurus.io/docs/api/docusaurus-config#future
   future: {
@@ -39,6 +39,13 @@ const config: Config = {
     [
       'classic',
       {
+        docs: {
+          sidebarPath: './sidebars.ts',
+          // Please change this to your repo.
+          // Remove this to remove the "edit this page" links.
+          editUrl:
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+        },
         blog: {
           showReadingTime: true,
           feedOptions: {
@@ -48,7 +55,7 @@ const config: Config = {
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
           editUrl:
-            'https://github.com/unsettledaverage73/apexaiq-docs/tree/main/apexa-docs/',
+            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
           // Useful options to enforce blogging best practices
           onInlineTags: 'warn',
           onInlineAuthors: 'warn',
@@ -67,12 +74,8 @@ const config: Config = {
       {
         id: 'apexa-iq',
         path: 'docs/apexa-iq',
-        routeBasePath: '/docs',
-        editUrl:
-          'https://github.com/unsettledaverage73/apexaiq-docs/tree/main/apexa-docs/',
+        routeBasePath: '/docs/apexa-iq',
         sidebarPath: './sidebars.ts',
-        // Remove this to avoid the "sidebarId" is not allowed error
-        // sidebarId: 'apexaIqSidebar',
       },
     ],
     [
@@ -80,42 +83,46 @@ const config: Config = {
       {
         id: 'python-assignment',
         path: 'docs/python-assignment',
-        routeBasePath: '/python-assignment',
+        routeBasePath: '/docs/python-assignment',
         sidebarPath: './sidebars.ts',
-        editUrl:
-          'https://github.com/unsettledaverage73/apexaiq-docs/tree/main/apexa-docs/',
-        // Remove this to avoid the "sidebarId" is not allowed error
-        // sidebarId: 'pythonAssignmentSidebar',
       },
     ],
   ],
 
   themeConfig: {
     // Replace with your project's social card
-    image: 'img/image.png',
+    image: 'img/docusaurus-social-card.jpg',
+    colorMode: {
+      respectPrefersColorScheme: true,
+    },
     navbar: {
-      title: undefined,
+      title: 'My Site',
       logo: {
-        alt: 'ApexaIQ Logo',
-        src: 'img/image.png',
-        href: 'https://apexaiq.com',
+        alt: 'My Site Logo',
+        src: 'img/logo.svg',
       },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'apexaIqSidebar',
+          sidebarId: 'tutorialSidebar',
           position: 'left',
-          label: 'Documentation',
+          label: 'Tutorial',
         },
         {
           type: 'docSidebar',
-          sidebarId: 'python-assignment',
+          sidebarId: 'apexaIqSidebar',
+          position: 'left',
+          label: 'ApexaIQ Documentation',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'pythonAssignmentSidebar',
           position: 'left',
           label: 'Python Assignment',
         },
         {to: '/blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/unsettledaverage73/apexaiq-docs',
+          href: 'https://github.com/facebook/docusaurus',
           label: 'GitHub',
           position: 'right',
         },
@@ -128,8 +135,8 @@ const config: Config = {
           title: 'Docs',
           items: [
             {
-              label: 'Documentation',
-              to: '/docs/apexa-iq/executive-summary',
+              label: 'Tutorial',
+              to: '/docs/intro',
             },
           ],
         },
@@ -159,25 +166,24 @@ const config: Config = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/unsettledaverage73/apexaiq-docs',
+              href: 'https://github.com/facebook/docusaurus',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Built by unsettledaverage73, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
       darkTheme: prismThemes.dracula,
     },
-  } satisfies Preset.ThemeConfig,
-
-  markdown: {
-    mermaid: true,
-    hooks: {
-      onBrokenMarkdownLinks: 'warn',
+    markdown: {
+      mermaid: true,
+      hooks: {
+        onBrokenMarkdownLinks: 'warn',
+      },
     },
-  },
+  } satisfies Preset.ThemeConfig,
 };
 
 export default config;

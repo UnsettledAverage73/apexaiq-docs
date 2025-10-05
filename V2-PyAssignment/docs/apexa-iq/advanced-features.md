@@ -4,7 +4,7 @@ title: Advanced Features
 ---
 
 ## 7. Advanced Features
-n
+
 ### 7.1 Shadow IT Discovery
 
 **Comprehensive Asset Discovery:**
@@ -35,7 +35,7 @@ n
 - **Remediation Tracking:** Progress monitoring for compliance improvements
 
 ### 7.3 Integration Capabilities
-
+<!-- -->
 **Data Source Integration:**
 - **Lansweeper:** Direct integration with existing Lansweeper deployments
 - **ServiceNow:** ITSM platform connectivity
