@@ -13,7 +13,6 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from bs4 import BeautifulSoup
 import logging
 
 # Set up logging
@@ -57,38 +56,41 @@ class DBFScraper:
                 EC.presence_of_element_located((By.TAG_NAME, "body"))
             )
             
-            # Get page source and parse with BeautifulSoup
-            soup = BeautifulSoup(self.driver.page_source, 'html.parser')
+            # Get page source (no BeautifulSoup needed for parsing)
             
             version_data = []
+            
+            # Look for elements that might contain version entries, e.g., headings or paragraphs
+            # The pattern "VERSION vX.XX (Date)" is usually in plain text within elements.
+            # We'll use a broad XPath to find all text-containing elements.
+            potential_version_elements = self.driver.find_elements(By.XPATH, "//*[self::h2 or self::h3 or self::p or self::span]")
             
             # Look for version entries - they typically follow the pattern "VERSION vX.XX (Date)"
             version_pattern = re.compile(r'VERSION\s+(v[\d\.]+)\s*\(([^)]+)\)', re.IGNORECASE)
             
-            # Find all text content and extract version information
-            text_content = soup.get_text()
-            
-            # Split by version entries and process each one
-            version_entries = re.findall(version_pattern, text_content)
-            
-            for version, date_str in version_entries:
-                # Clean up the version string
-                clean_version = version.strip()
-                
-                # Parse and format the date
-                formatted_date = self.parse_date(date_str.strip())
-                
-                # Create the URL (assuming it's the same page for now)
-                url = self.url
-                
-                version_info = {
-                    "version": clean_version,
-                    "date": formatted_date,
-                    "url": url
-                }
-                
-                version_data.append(version_info)
-                logger.info(f"Found version: {clean_version} - {formatted_date}")
+            for element in potential_version_elements:
+                element_text = element.text
+                if element_text:
+                    version_entries = re.findall(version_pattern, element_text)
+                    
+                    for version, date_str in version_entries:
+                        # Clean up the version string
+                        clean_version = version.strip()
+                        
+                        # Parse and format the date
+                        formatted_date = self.parse_date(date_str.strip())
+                        
+                        # Create the URL (assuming it's the same page for now)
+                        url = self.url
+                        
+                        version_info = {
+                            "version": clean_version,
+                            "date": formatted_date,
+                            "url": url
+                        }
+                        
+                        version_data.append(version_info)
+                        logger.info(f"Found version: {clean_version} - {formatted_date}")
             
             # Filter out duplicate entries and clean up the data
             unique_versions = {}
