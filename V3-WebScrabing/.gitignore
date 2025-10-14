@@ -1,0 +1,11 @@
+logs
+_
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+__pycache__
+venv
+Web Scraping.pptx
+*.log
