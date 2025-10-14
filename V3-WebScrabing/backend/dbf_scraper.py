@@ -45,11 +45,11 @@ class DBFScraper:
             logger.error(f"Failed to initialize Chrome WebDriver: {e}")
             raise
     
-    def scrape_version_data(self) -> List[Dict[str, str]]:
+    def scrape_version_data(self, target_url: str) -> List[Dict[str, str]]:
         """Scrape version data from the news page"""
         try:
-            logger.info(f"Navigating to {self.url}")
-            self.driver.get(self.url)
+            logger.info(f"Navigating to {target_url}")
+            self.driver.get(target_url)
             
             # Wait for the page to load
             WebDriverWait(self.driver, 10).until(
@@ -81,7 +81,7 @@ class DBFScraper:
                         formatted_date = self.parse_date(date_str.strip())
                         
                         # Create the URL (assuming it's the same page for now)
-                        url = self.url
+                        url = target_url  # Use target_url here
                         
                         version_info = {
                             "version": clean_version,
@@ -148,23 +148,3 @@ class DBFScraper:
         if self.driver:
             self.driver.quit()
             logger.info("WebDriver closed")
-
-def main():
-    """Main function to test the scraper"""
-    scraper = DBFScraper(headless=True)
-    try:
-        version_data = scraper.scrape_version_data()
-        
-        print(f"\nScraped {len(version_data)} version entries:")
-        print("-" * 80)
-        for entry in version_data:
-            print(f"Version: {entry['version']}")
-            print(f"Date: {entry['date']}")
-            print(f"URL: {entry['url']}")
-            print("-" * 40)
-            
-    finally:
-        scraper.close()
-
-if __name__ == "__main__":
-    main()

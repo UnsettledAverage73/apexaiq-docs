@@ -10,16 +10,6 @@ if ! command -v python3 &> /dev/null; then
     exit 1
 fi
 
-# Create virtual environment if it doesn't exist
-if [ ! -d "venv" ]; then
-    echo "Creating virtual environment..."
-    python3 -m venv venv
-fi
-
-# Install Python dependencies
-echo "Installing Python dependencies..."
-./venv/bin/pip install -r requirements.txt
-
 # Check if Chrome/Chromium is installed
 echo "Checking for Chrome/Chromium browser..."
 if ! command -v google-chrome &> /dev/null && ! command -v chromium-browser &> /dev/null && ! command -v chromium &> /dev/null; then
@@ -37,11 +27,11 @@ mkdir -p logs
 echo "Setup completed successfully!"
 echo ""
 echo "To run the automation:"
-echo "  ./venv/bin/python main.py"
+echo "  python3 main.py"
 echo ""
 echo "To test components:"
-echo "  ./venv/bin/python main.py --test"
+echo "  python3 main.py --test"
 echo ""
 echo "To run with visible browser:"
-echo "  ./venv/bin/python main.py --headless=false"
+echo "  python3 main.py --headless=false"
 echo ""
